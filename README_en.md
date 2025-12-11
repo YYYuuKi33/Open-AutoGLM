@@ -9,6 +9,13 @@
     👋 Join our <a href="resources/WECHAT.md" target="_blank">WeChat</a> and <a href="https://discord.gg/QR7SARHRxK" target="_blank">Discord</a> communities
 </p>
 
+## Quick Start
+You can use Claude Code and enter the following prompt to quickly deploy this project:
+```
+Access the documentation and install AutoGLM for me
+https://raw.githubusercontent.com/zai-org/Open-AutoGLM/refs/heads/main/README.md
+```
+
 ## Project Introduction
 
 Phone Agent is a mobile intelligent assistant framework built on AutoGLM. It understands phone screen content in a multimodal manner and helps users complete tasks through automated operations. The system controls devices via ADB (Android Debug Bridge), perceives screens using vision-language models, and generates and executes operation workflows through intelligent planning. Users simply describe their needs in natural language, such as "Open eBay and search for wireless earphones." and Phone Agent will automatically parse the intent, understand the current interface, plan the next action, and complete the entire workflow. The system also includes a sensitive operation confirmation mechanism and supports manual takeover during login or verification code scenarios. Additionally, it provides remote ADB debugging capabilities, allowing device connection via WiFi or network for flexible remote control and development.
