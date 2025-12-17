@@ -41,13 +41,11 @@ def get_screenshot(device_id: str | None = None, timeout: int = 10) -> Screensho
     adb_prefix = _get_adb_prefix(device_id)
 
     try:
-        # Execute screenshot command with proper encoding handling
+        # Execute screenshot command
         result = subprocess.run(
             adb_prefix + ["shell", "screencap", "-p", "/sdcard/tmp.png"],
             capture_output=True,
             text=True,
-            encoding='utf-8',
-            errors='ignore',
             timeout=timeout,
         )
 
@@ -61,8 +59,6 @@ def get_screenshot(device_id: str | None = None, timeout: int = 10) -> Screensho
             adb_prefix + ["pull", "/sdcard/tmp.png", temp_path],
             capture_output=True,
             text=True,
-            encoding='utf-8',
-            errors='ignore',
             timeout=5,
         )
 

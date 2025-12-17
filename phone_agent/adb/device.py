@@ -21,18 +21,11 @@ def get_current_app(device_id: str | None = None) -> str:
     """
     adb_prefix = _get_adb_prefix(device_id)
 
-    # 修复编码问题，在Windows上指定encoding='utf-8'
     result = subprocess.run(
-        adb_prefix + ["shell", "dumpsys", "window"], 
-        capture_output=True, 
-        text=True,
-        encoding='utf-8',
-        errors='ignore'
+        adb_prefix + ["shell", "dumpsys", "window"], capture_output=True, text=True
     )
-    
-    # 处理命令执行失败的情况，确保output不为None
-    output = result.stdout if result.stdout is not None else ""
-    
+    output = result.stdout
+
     # Parse window focus info
     for line in output.split("\n"):
         if "mCurrentFocus" in line or "mFocusedApp" in line:
@@ -61,10 +54,7 @@ def tap(
     adb_prefix = _get_adb_prefix(device_id)
 
     subprocess.run(
-        adb_prefix + ["shell", "input", "tap", str(x), str(y)], 
-        capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
+        adb_prefix + ["shell", "input", "tap", str(x), str(y)], capture_output=True
     )
     time.sleep(delay)
 
@@ -87,17 +77,11 @@ def double_tap(
     adb_prefix = _get_adb_prefix(device_id)
 
     subprocess.run(
-        adb_prefix + ["shell", "input", "tap", str(x), str(y)], 
-        capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
+        adb_prefix + ["shell", "input", "tap", str(x), str(y)], capture_output=True
     )
     time.sleep(TIMING_CONFIG.device.double_tap_interval)
     subprocess.run(
-        adb_prefix + ["shell", "input", "tap", str(x), str(y)], 
-        capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
+        adb_prefix + ["shell", "input", "tap", str(x), str(y)], capture_output=True
     )
     time.sleep(delay)
 
@@ -128,8 +112,6 @@ def long_press(
         adb_prefix
         + ["shell", "input", "swipe", str(x), str(y), str(x), str(y), str(duration_ms)],
         capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
     )
     time.sleep(delay)
 
@@ -179,8 +161,6 @@ def swipe(
             str(duration_ms),
         ],
         capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
     )
     time.sleep(delay)
 
@@ -199,10 +179,7 @@ def back(device_id: str | None = None, delay: float | None = None) -> None:
     adb_prefix = _get_adb_prefix(device_id)
 
     subprocess.run(
-        adb_prefix + ["shell", "input", "keyevent", "4"], 
-        capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
+        adb_prefix + ["shell", "input", "keyevent", "4"], capture_output=True
     )
     time.sleep(delay)
 
@@ -221,10 +198,7 @@ def home(device_id: str | None = None, delay: float | None = None) -> None:
     adb_prefix = _get_adb_prefix(device_id)
 
     subprocess.run(
-        adb_prefix + ["shell", "input", "keyevent", "KEYCODE_HOME"], 
-        capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
+        adb_prefix + ["shell", "input", "keyevent", "KEYCODE_HOME"], capture_output=True
     )
     time.sleep(delay)
 
@@ -264,8 +238,6 @@ def launch_app(
             "1",
         ],
         capture_output=True,
-        encoding='utf-8',
-        errors='ignore'
     )
     time.sleep(delay)
     return True
