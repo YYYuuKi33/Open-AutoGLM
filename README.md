@@ -9,9 +9,12 @@
     👋 加入我们的 <a href="resources/WECHAT.md" target="_blank">微信</a> 社区
 </p>
 <p align="center">
+    👋 关注智谱 AI 输入法 <a href="https://x.com/Autotyper_Agent?s=20" target="_blank">X</a> 账号
+</p>
+<p align="center">
     🎤 进一步在我们的产品 <a href="https://autoglm.zhipuai.cn/autotyper/" target="_blank">智谱 AI 输入法</a> 体验“用嘴发指令”
-</p
-><p align="center">
+</p>
+<p align="center">
     <a href="https://mp.weixin.qq.com/s/wRp22dmRVF23ySEiATiWIQ" target="_blank">AutoGLM 实战派</a> 开发者激励活动火热进行中，跑通、二创即可瓜分数万元现金奖池！成果提交 👉 <a href="https://zhipu-ai.feishu.cn/share/base/form/shrcnE3ZuPD5tlOyVJ7d5Wtir8c?from=navigation" target="_blank">入口</a>
 </p>
 
@@ -33,6 +36,14 @@ ADB 调试能力，可通过 WiFi 或网络连接设备，实现灵活的远程�
 
 > ⚠️
 > 本项目仅供研究和学习使用。严禁用于非法获取信息、干扰系统或任何违法活动。请仔细审阅 [使用条款](resources/privacy_policy.txt)。
+
+## 与其他自动化工具集成
+
+### Midscene.js
+
+[Midscene.js](https://midscenejs.com/zh/index.html) 是一款由视觉模型驱动的开源 UI 自动化 SDK，支持通过 JavaScript 或 Yaml 格式的流程语法，实现多平台的自动化。
+
+目前 Midscene.js 已完成对 AutoGLM 模型的适配，你可以通过 [Midscene.js 接入指南](https://midscenejs.com/zh/model-common-config.html#auto-glm) 快速体验 AutoGLM 在 iOS 和 Android 设备上的自动化效果。
 
 ## 模型下载地址
 
@@ -105,52 +116,11 @@ ADB 调试能力，可通过 WiFi 或网络连接设备，实现灵活的远程�
 
 ## iPhone 环境准备
 
-### 1. Python 环境
+如果你使用的是 iPhone 设备，请参考专门的 iOS 配置文档：
 
-建议使用 Python 3.10 及以上版本。
+📱 [iOS 环境配置指南](docs/ios_setup/ios_setup.md)
 
-### 2. 设置 WebDriverAgent 
-
-WebDriverAgent 是 iOS 自动化的核心组件,需要在 iOS 设备上运行。
-
-注意：需要提前安装好Xcode、并注册好苹果开发者账号（不需要付费）
-
-#### 1. 克隆 WebDriverAgent
-
-```bash
-
-git clone https://github.com/appium/WebDriverAgent.git
-cd WebDriverAgent
-```
-在 Xcode 中打开WebDriverAgent.xcodeproj
-
-#### 2. 设置 Signing & Capabilities
-
-![设置签名](resources/setup-xcode-wda.png)
-
-把Bundle ID改成 YOUR_NAME.WebDriverAgentRunner。
-
-#### 3. 开始UI测试
-
-需要在Finder勾选过“在WiFi中显示这台iPhone”，且Mac与iPhone处于同一WiFi网络之下，可以不用连接数据线，即可在设备中选择到。
-
-**注意：** 不建议插数据线运行，因为插数据线还必须要同时运行iproxy才可以把端口映射出来，不及直接WiFi运行稳定。
-
-先从项目Target选择WebDriverAgentRunner，然后再选择你的设备。
-
-![选择设备](resources/select-your-iphone-device.png)
-
-选好后，长按"▶️"运行按钮选择“Test”后开始编译并部署到你的iPhone上。
-
-![信任设备](resources/start-wda-testing.png)
-
-这时需要你在iPhone上输入解锁密码，在设置 -> 通用 -> VPN与设备管理 中信任开发者App，还需要在 设置 -> 开发者  中，打开UI自动化设置。
-
-
-
-![信任设备](resources/trust-dev-app.jpg)
-
-![启用UI自动化](resources/enable-ui-automation.jpg)
+该文档详细介绍了如何配置 WebDriverAgent 和 iPhone 设备，以便在 iOS 上使用 AutoGLM。
 
 ## 部署准备工作
 
