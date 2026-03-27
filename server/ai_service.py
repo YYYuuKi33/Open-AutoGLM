@@ -2,9 +2,15 @@ from typing import Any, Dict, Optional
 import json
 import os
 import uuid
+from pathlib import Path
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+
+# Load environment variables from .env file in project root
+dotenv_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=dotenv_path)
 
 # Import the project's PhoneAgent. This module exists in the repo.
 from phone_agent import PhoneAgent
@@ -129,5 +135,7 @@ def run(request: RunRequest):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("server.ai_service:app", host="127.0.0.1", port=8001, log_level="info")
+    # Use port from environment variable or default to 10001
+    port = int(os.getenv("OPEN_AUTOGLM_PORT", "10001"))
+    uvicorn.run("server.ai_service:app", host="127.0.0.1", port=port, log_level="info")
 

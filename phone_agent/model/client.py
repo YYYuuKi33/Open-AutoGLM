@@ -1,6 +1,7 @@
 """Model client for AI inference using OpenAI-compatible API."""
 
 import json
+import os
 import time
 from dataclasses import dataclass, field
 from typing import Any
@@ -14,9 +15,9 @@ from phone_agent.config.i18n import get_message
 class ModelConfig:
     """Configuration for the AI model."""
 
-    base_url: str = "http://localhost:8000/v1"
-    api_key: str = "EMPTY"
-    model_name: str = "autoglm-phone-9b"
+    base_url: str = field(default_factory=lambda: os.getenv("PHONE_AGENT_BASE_URL", "http://localhost:8000/v1"))
+    api_key: str = field(default_factory=lambda: os.getenv("PHONE_AGENT_API_KEY", "EMPTY"))
+    model_name: str = field(default_factory=lambda: os.getenv("PHONE_AGENT_MODEL", "autoglm-phone-9b"))
     max_tokens: int = 3000
     temperature: float = 0.0
     top_p: float = 0.85

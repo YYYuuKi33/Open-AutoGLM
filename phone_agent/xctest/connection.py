@@ -287,7 +287,7 @@ class XCTestConnection:
                 cmd.extend(["-u", device_id])
             cmd.append("pair")
 
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='ignore', timeout=30)
 
             output = result.stdout + result.stderr
 
@@ -320,7 +320,7 @@ class XCTestConnection:
                 cmd.extend(["-u", device_id])
             cmd.extend(["-k", "DeviceName"])
 
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
+            result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='ignore', timeout=5)
 
             return result.stdout.strip() or None
 

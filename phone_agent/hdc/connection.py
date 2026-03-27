@@ -111,6 +111,8 @@ class HDCConnection:
                 [self.hdc_path, "tconn", address],
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
+                errors='ignore',
                 timeout=timeout,
             )
 
@@ -150,6 +152,8 @@ class HDCConnection:
                             [self.hdc_path, "tdisconn", device.device_id],
                             capture_output=True,
                             text=True,
+                            encoding='utf-8',
+                            errors='ignore',
                             timeout=5
                         )
                 return True, "Disconnected all remote devices"
@@ -174,6 +178,8 @@ class HDCConnection:
                 [self.hdc_path, "list", "targets"],
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
+                errors='ignore',
                 timeout=5,
             )
 
@@ -340,14 +346,14 @@ class HDCConnection:
         try:
             # Kill server
             _run_hdc_command(
-                [self.hdc_path, "kill"], capture_output=True, timeout=5
+                [self.hdc_path, "kill"], capture_output=True, text=True, encoding='utf-8', errors='ignore', timeout=5
             )
 
             time.sleep(TIMING_CONFIG.connection.server_restart_delay)
 
             # Start server (HDC auto-starts when running commands)
             _run_hdc_command(
-                [self.hdc_path, "start", "-r"], capture_output=True, timeout=5
+                [self.hdc_path, "start", "-r"], capture_output=True, text=True, encoding='utf-8', errors='ignore', timeout=5
             )
 
             return True, "HDC server restarted"
